@@ -1,4 +1,4 @@
-autodisconnect
+teams-autodisconnect
 ==============
 
 
@@ -16,17 +16,22 @@ autodisconnect
 <!-- usage -->
 ```sh-session
 $ npm install -g autodisconnect
-$ autodisconnect COMMAND
-running command...
-$ autodisconnect (-v|--version|version)
-autodisconnect/1.0.0 win32-x64 node-v14.15.5
+$ autodisconnect
+[22:58:29] » i  info      Teams autodisconnect by @pcktm
+[22:58:29] » √  success   Connected to Teams instance
+[22:58:33] » ...  watching  There are currently 3 people in the meeting
+[22:58:35] » ‼  warning   Threshold reached, leaving call...
+[22:58:35] » √  success   Left successfully!
+
 $ autodisconnect --help [COMMAND]
 USAGE
-  $ autodisconnect COMMAND
-...
+  $ autodisconnect
+
+OPTIONS
+  -h, --help                 show CLI help
+  -o, --timeout=timeout      [default: 10] For how long to wait before activating (in minutes)
+  -p, --port=port            [default: 56874] Chromium debugging port of Teams instance
+  -t, --threshold=threshold  [default: 10] Max amount of people left in call for you to leave
+  -v, --version              show CLI version
 ```
 <!-- usagestop -->
-# Commands
-<!-- commands -->
-
-<!-- commandsstop -->

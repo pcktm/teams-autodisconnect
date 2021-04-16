@@ -48,7 +48,7 @@
   "repository": "pcktm/teams-autodisconnect",
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
-    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "prepack": "rimraf lib && tsc -b && oclif-dev manifest",
     "postinstall": "patch-package",
     "test": "echo NO TESTS",
     "build": "npm run prepack && rimraf dist && pkg . --out-path ./dist",
