@@ -19,7 +19,7 @@ $ npm install -g autodisconnect
 $ autodisconnect COMMAND
 running command...
 $ autodisconnect (-v|--version|version)
-autodisconnect/0.0.0 win32-x64 node-v14.15.5
+autodisconnect/1.0.0 win32-x64 node-v14.15.5
 $ autodisconnect --help [COMMAND]
 USAGE
   $ autodisconnect COMMAND

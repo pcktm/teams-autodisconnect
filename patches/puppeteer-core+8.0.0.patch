@@ -1,5 +1,5 @@
 diff --git a/node_modules/puppeteer-core/lib/types.d.ts b/node_modules/puppeteer-core/lib/types.d.ts
-index 52cd722..7475229 100644
+index 52cd722..169b087 100644
 --- a/node_modules/puppeteer-core/lib/types.d.ts
 +++ b/node_modules/puppeteer-core/lib/types.d.ts
 @@ -333,7 +333,7 @@ export declare interface BrowserConnectOptions {
@@ -11,3 +11,12 @@ index 52cd722..7475229 100644
      /**
       * Slows down Puppeteer operations by the specified amount of milliseconds to
       * aid debugging.
+@@ -24080,7 +24080,7 @@ export declare interface RemoteAddress {
+  *
+  * @public
+  */
+-export declare type ResourceType = Lowercase<Protocol.Network.ResourceType>;
++export declare type ResourceType = string;
+ 
+ /**
+  * Required response data to fulfill a request with.
