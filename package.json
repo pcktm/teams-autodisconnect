@@ -38,7 +38,7 @@
   ],
   "homepage": "https://github.com/pcktm/teams-autodisconnect",
   "keywords": [
-    "oclif"
+    "teams", "microsoft"
   ],
   "license": "AGPL-3.0-or-later",
   "main": "lib/index.js",
@@ -56,6 +56,8 @@
   },
   "types": "lib/index.d.ts",
   "pkg": {
-    "scripts": "./lib/**/*.js"
+    "scripts": "./lib/**/*.js",
+    "targets": [ "node14-win-x64" ],
+    "options": ["experimental-modules"]
   }
 }
