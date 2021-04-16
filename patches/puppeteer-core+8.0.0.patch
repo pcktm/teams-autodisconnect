@@ -1,0 +1,13 @@
+diff --git a/node_modules/puppeteer-core/lib/types.d.ts b/node_modules/puppeteer-core/lib/types.d.ts
+index 52cd722..7475229 100644
+--- a/node_modules/puppeteer-core/lib/types.d.ts
++++ b/node_modules/puppeteer-core/lib/types.d.ts
+@@ -333,7 +333,7 @@ export declare interface BrowserConnectOptions {
+     /**
+      * Sets the viewport for each page.
+      */
+-    defaultViewport?: Viewport;
++    defaultViewport?: Viewport | null;
+     /**
+      * Slows down Puppeteer operations by the specified amount of milliseconds to
+      * aid debugging.

@@ -1,0 +1,61 @@
+{
+  "name": "autodisconnect",
+  "version": "1.0.0",
+  "author": "Jakub Kopańko @pcktm",
+  "bin": {
+    "autodisconnect": "./bin/run"
+  },
+  "bugs": "https://github.com/pcktm/teams-autodisconnect/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "@types/signale": "^1.4.1",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
+    "puppeteer-core": "^8.0.0",
+    "signale": "^1.4.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/node": "^10",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "eslint": "^5.13",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "pkg": "^4.5.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/pcktm/teams-autodisconnect",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "main": "lib/index.js",
+  "oclif": {
+    "bin": "autodisconnect"
+  },
+  "repository": "pcktm/teams-autodisconnect",
+  "scripts": {
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "postinstall": "patch-package",
+    "test": "echo NO TESTS",
+    "build": "npm run prepack && rimraf dist && pkg . --out-path ./dist",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts",
+  "pkg": {
+    "scripts": "./lib/**/*.js"
+  }
+}
