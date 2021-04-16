@@ -39,6 +39,7 @@ class Autodisconnect extends Command {
 
     if (!meeting) {
       signale.fatal("You're not in a meeting!");
+      await teamsInstance.disconnect();
       process.exit(-1);
     }
 
@@ -48,6 +49,10 @@ class Autodisconnect extends Command {
     do {
       const peristentLogger = new Signale({interactive: true, config: {displayTimestamp: true}});
       participants = await meeting.$$('li[data-tid^=participantsInCall]');
+      if (participants.length === 0) {
+        const btn = await meeting.$('button#roster-button');
+        if (btn) btn.click();
+      }
 
       // for (const p of participants) {
       //   const name = await meeting.evaluate((element) => element.textContent, await p.$('span.ui-text'));
