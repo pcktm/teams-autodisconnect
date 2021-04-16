@@ -45,7 +45,7 @@ class Autodisconnect extends Command {
 
     signale.success(`Found meeting: ${(await meeting.title()).split(' | ')[0]}`);
 
-    let participants:puppeteer.ElementHandle[];
+    let participants: puppeteer.ElementHandle[];
     do {
       const peristentLogger = new Signale({interactive: true, config: {displayTimestamp: true}});
       participants = await meeting.$$('li[data-tid^=participantsInCall]');
@@ -61,9 +61,14 @@ class Autodisconnect extends Command {
 
       peristentLogger.watch(`There are currently ${participants.length} people in the meeting`);
 
-      // Wait for 2 seconds since I don't want to flood the channel
+      // Wait 2 seconds
       await new Promise((r) => setTimeout(r, 2000));
-    } while (participants.length > -2);
+    } while (participants.length > flags.threshold || participants.length === 0);
+
+    signale.warn('Threshold reached, leaving call...');
+    const leaveBtn = await meeting.$('[data-tid="hangup-main-btn"]');
+    if (leaveBtn) await leaveBtn.click();
+    signale.success('Left successfully!');
 
     signale.info('Gracefully shutting down...');
     await teamsInstance.disconnect();
