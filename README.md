@@ -45,3 +45,5 @@ OPTIONS
   -t, --threshold=threshold  [default: 10] Max amount of people left in call for you to leave
   -v, --version              show CLI version
 ```
+
+student piwo debil
