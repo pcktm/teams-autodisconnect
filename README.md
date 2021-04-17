@@ -17,7 +17,7 @@ teams-autodisconnect
 2. Open command line and run `$ npm install -g autodisconnect`. This will download and install latest version of `autodisconnect`
 
 # Setup
-This project uses [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) to connect to Microsoft Teams app, which is based on Electron. This approach relies on a condition that Teams are launched with a specific debugging flag set, enabling that is quite straightforward though:
+This project uses [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) to connect to Microsoft Teams app, which is based on Electron. This approach relies on a condition that Teams are launched with a specific debugging flag set, enabling it is quite straightforward though:
 * ##### On Windows:
     You need to launch `Teams.exe` executable with `--remote-debugging-port=56874` flag. The port is arbitrary, but `56874` is the default. The way I have it set up is I have a shortcut on the desktop with the above flag added to `Target`.
     You can usually find `Teams.exe` binary in `C:\Users\{username}\AppData\Local\Microsoft\Teams\current\Teams.exe`
