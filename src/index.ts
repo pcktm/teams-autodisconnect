@@ -3,8 +3,6 @@ import * as puppeteer from 'puppeteer-core';
 import {Signale} from 'signale';
 
 class Autodisconnect extends Command {
-  static description = 'describe the command here';
-
   static flags = {
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),

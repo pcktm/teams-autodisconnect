@@ -15,4 +15,4 @@ if (dev) {
 require(`../${dev ? 'src' : 'lib'}`).run()
 .catch(require('@oclif/errors/handle'))
 
-updateNotifier({pkg, updateCheckInterval: 0}).notify();
+updateNotifier({pkg}).notify();
