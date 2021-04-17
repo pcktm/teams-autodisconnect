@@ -1,6 +1,6 @@
 {
   "name": "autodisconnect",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Jakub Kopańko @pcktm",
   "description": "📞 Automatically leave MS Teams call when participants count falls below a customizable threshold.",
   "bin": {
@@ -16,7 +16,8 @@
     "postinstall-postinstall": "^2.1.0",
     "puppeteer-core": "^8.0.0",
     "signale": "^1.4.0",
-    "tslib": "^1"
+    "tslib": "^1",
+    "update-notifier": "^5.1.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
@@ -39,7 +40,8 @@
   ],
   "homepage": "https://github.com/pcktm/teams-autodisconnect",
   "keywords": [
-    "teams", "microsoft"
+    "teams",
+    "microsoft"
   ],
   "license": "AGPL-3.0-or-later",
   "main": "lib/index.js",
@@ -58,7 +60,11 @@
   "types": "lib/index.d.ts",
   "pkg": {
     "scripts": "./lib/**/*.js",
-    "targets": [ "node14-win-x64" ],
-    "options": ["experimental-modules"]
+    "targets": [
+      "node14-win-x64"
+    ],
+    "options": [
+      "experimental-modules"
+    ]
   }
 }
