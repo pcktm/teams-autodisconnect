@@ -25,7 +25,7 @@ This project uses [Chrome DevTools Protocol](https://chromedevtools.github.io/de
 * ##### On Linux / MacOS / FreeBSD / Whatever:
     You should follow the same procedure as above for Windows, I don't have a mac and I don't want to boot into Linux, if someone wants to, they can fill this out. All this boils down to running `Teams` with `--remote-debugging-port=56874` and should work on any platform that is capable of doing so.
 
-**Important notice**: This program will attempt to start Teams in debug mode automatically if they are not running, or will attempt to restart them in debug mode, automatically choosing the nearest available port, starting from the default `56874`. Then, the app will wait for you to join a meeting, constantly polling every 5 seconds for status.
+**Important notice**: This program will attempt to start Teams in debug mode automatically if they are not running, or will attempt to restart them in debug mode, automatically choosing the nearest available port, starting from the passed in port argument. Then, the app will wait for you to join a meeting, constantly polling every 5 seconds for status.
 
 # Usage
 
