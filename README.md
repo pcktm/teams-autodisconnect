@@ -8,9 +8,10 @@ teams-autodisconnect
 [![Downloads/week](https://img.shields.io/npm/dw/autodisconnect.svg)](https://npmjs.org/package/autodisconnect)
 [![License](https://img.shields.io/npm/l/autodisconnect.svg)](https://github.com/pcktm/teams-autodisconnect/blob/master/package.json)
 
-* [Installation](#installation)
-* [Setup](#setup)
-* [Usage](#usage)
+- [teams-autodisconnect](#teams-autodisconnect)
+- [Installation](#installation)
+- [Setup](#setup)
+- [Usage](#usage)
 
 # Installation
 1. Install *Node.js* from [here](https://nodejs.org/en/) or from your package repository of choice.
@@ -23,6 +24,8 @@ This project uses [Chrome DevTools Protocol](https://chromedevtools.github.io/de
     You can usually find `Teams.exe` binary in `C:\Users\{username}\AppData\Local\Microsoft\Teams\current\Teams.exe`
 * ##### On Linux / MacOS / FreeBSD / Whatever:
     You should follow the same procedure as above for Windows, I don't have a mac and I don't want to boot into Linux, if someone wants to, they can fill this out. All this boils down to running `Teams` with `--remote-debugging-port=56874` and should work on any platform that is capable of doing so.
+
+**Important notice**: This program will attempt to start Teams in debug mode automatically if they are not running, or will attempt to restart them in debug mode, automatically choosing the nearest available port, starting from the passed in port argument. Then, the app will wait for you to join a meeting, constantly polling every 5 seconds for status.
 
 # Usage
 
