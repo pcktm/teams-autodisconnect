@@ -46,19 +46,25 @@ export class Run extends Command {
       }
 
       signale.success(`Found meeting: ${(await meeting.title()).split(' | ')[0]}`);
-      let participants: puppeteer.ElementHandle[];
+      let participants = 0;
       do {
         const peristentLogger = new Signale({interactive: true, config: {displayTimestamp: true}});
-        participants = await meeting.$$('li[data-tid^=participantsInCall]');
-        if (participants.length === 0) {
-          const btn = await meeting.$('button#roster-button');
-          if (btn) btn.click();
-        }
-
-        peristentLogger.watch(`Detected ${participants.length} person(s) in the meeting`);
-
         await new Promise((r) => setTimeout(r, 2000));
-      } while (participants.length > flags.threshold || participants.length === 0);
+
+        // if (participants === 0) {
+        //   const btn = await meeting.$('button#roster-button');
+        //   if (btn) btn.click();
+        // }
+
+        const uibox = await meeting.$('div[data-tid="virtualized-tree-list"]'); // this bitch is dynamic
+        if (!uibox) continue;
+        const title = await meeting.evaluate((element) => element.textContent, await uibox.$('span.ui-text.pn.po.yv')) as string;
+        const num = title.match(/\((\d+)\)$/gi);
+        if (!num) continue;
+        participants = Number(num[0].substring(1, 3));
+
+        peristentLogger.watch(`Detected ${participants} person(s) in the meeting`);
+      } while (participants > flags.threshold || participants === 0);
 
       signale.warn('Threshold reached, leaving call...');
 
