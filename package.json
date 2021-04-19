@@ -2,7 +2,7 @@
   "name": "autodisconnect",
   "version": "1.0.4",
   "author": "Jakub Kopańko @pcktm",
-  "description": "📞 Automatically leave MS Teams call when participants count falls below a customizable threshold.",
+  "description": "📞 Automatically leave MS Teams call when participant count falls below a customizable threshold.",
   "bin": {
     "autodisconnect": "./bin/run"
   },
