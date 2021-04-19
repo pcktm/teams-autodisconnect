@@ -21,12 +21,12 @@ export class Run extends Command {
 
     const teamsInstance = await puppeteer.connect({browserURL: `http://127.0.0.1:${flags.port}`, defaultViewport: null})
       .catch(() => {
-        signale.error("Couldn't connect to Teams. Make sure you run 'autodisconnect launch' first.");
+        signale.fatal("Couldn't connect to Teams. Make sure you followed setup (https://github.com/pcktm/teams-autodisconnect#setup).");
         process.exit(-1);
       });
 
     if (teamsInstance) {
-      signale.success('Connected to Teams instance');
+      signale.success('Connected!');
 
       let meeting: puppeteer.Page | undefined;
 
@@ -51,19 +51,26 @@ export class Run extends Command {
         const peristentLogger = new Signale({interactive: true, config: {displayTimestamp: true}});
         await new Promise((r) => setTimeout(r, 2000));
 
-        // if (participants === 0) {
-        //   const btn = await meeting.$('button#roster-button');
-        //   if (btn) btn.click();
-        // }
-
-        const uibox = await meeting.$('div[data-tid="virtualized-tree-list"]'); // this bitch is dynamic
-        if (!uibox) continue;
-        const title = await meeting.evaluate((element) => element.textContent, await uibox.$('span.ui-text.pn.po.yv')) as string;
+        // This WILL most likely fail sometime, help needed, see issue #1
+        const uibox = await meeting.$('div[data-tid="virtualized-tree-list"]');
+        if (!uibox) {
+          const btn = await meeting.$('button#roster-button');
+          if (btn) btn.click();
+          continue;
+        }
+        const title = await meeting.evaluate((element) => element.textContent, await uibox.$('span.ui-tree__title:last-of-type > div.ui-flex > span.ui-text')) as string;
         const num = title.match(/\((\d+)\)$/gi);
-        if (!num) continue;
-        participants = Number(num[0].substring(1, 3));
+        if (!num || num.length === 0) {
+          signale.error('Could not get attendee count');
+          continue;
+        }
+        participants = Number(num[0].substring(1, num[0].length - 1));
 
-        peristentLogger.watch(`Detected ${participants} person(s) in the meeting`);
+        if (!participants) {
+          throw new Error('Participant count was falsy which should never happen??');
+        }
+
+        peristentLogger.watch(`Detected ${participants} person(s) in the meeting. (threshold: ${flags.threshold})`);
       } while (participants > flags.threshold || participants === 0);
 
       signale.warn('Threshold reached, leaving call...');
@@ -73,12 +80,11 @@ export class Run extends Command {
 
         if (leaveBtn) {
           await leaveBtn.click();
-          break;
         }
       }
 
       signale.success('Left successfully!');
-      if (await teamsInstance.isConnected()) await teamsInstance.disconnect();
+      await teamsInstance.disconnect();
     }
   }
 }
