@@ -8,6 +8,8 @@ teams-autodisconnect
 [![Downloads/week](https://img.shields.io/npm/dw/autodisconnect.svg)](https://npmjs.org/package/autodisconnect)
 [![License](https://img.shields.io/npm/l/autodisconnect.svg)](https://github.com/pcktm/teams-autodisconnect/blob/master/package.json)
 
+Automatically leave MS Teams call when participant count falls below a customizable threshold. Follow through installation and setup and run `autodisconnect watch`. This will connect to Teams, wait for you to join a meeting (you can start it while in a meeting already though) and disconnect when participant count falls below some threshold.
+
 - [teams-autodisconnect](#teams-autodisconnect)
 - [Installation](#installation)
 - [Setup](#setup)
@@ -25,12 +27,10 @@ This project uses [Chrome DevTools Protocol](https://chromedevtools.github.io/de
 * ##### On Linux / MacOS / FreeBSD / Whatever:
     You should follow the same procedure as above for Windows, I don't have a mac and I don't want to boot into Linux, if someone wants to, they can fill this out. All this boils down to running `Teams` with `--remote-debugging-port=56874` and should work on any platform that is capable of doing so.
 
-**Important notice**: This program will attempt to start Teams in debug mode automatically if they are not running, or will attempt to restart them in debug mode, automatically choosing the nearest available port, starting from the passed in port argument. Then, the app will wait for you to join a meeting, constantly polling every 5 seconds for status.
-
 # Usage
 
 ```sh-session
-$ autodisconnect
+$ autodisconnect watch
 [22:58:29] » i  info      Teams autodisconnect by @pcktm
 [22:58:29] » √  success   Connected to Teams instance
 [22:58:33] » ...  watching  There are currently 3 people in the meeting
@@ -38,15 +38,30 @@ $ autodisconnect
 [22:58:35] » √  success   Left successfully!
 
 $ autodisconnect --help
+📞 Automatically leave MS Teams call when participant count falls below a customizable threshold.
+
+VERSION
+  autodisconnect/1.0.4 win32-x64 node-v14.15.5
+
 USAGE
-  $ autodisconnect
+  $ autodisconnect [COMMAND]
+
+COMMANDS
+  help    display help for autodisconnect
+  launch  launch MS Teams in debug mode
+  watch   wait for a meeting and attach to it
+
+$ autodisconnect watch --help
+wait for a meeting and attach to it
+
+USAGE
+  $ autodisconnect watch
 
 OPTIONS
-  -h, --help                 show CLI help
-  -o, --timeout=timeout      [default: 10] For how long to wait before activating (in minutes)
-  -p, --port=port            [default: 56874] Chromium debugging port of Teams instance
-  -t, --threshold=threshold  [default: 10] Max amount of people left in call for you to leave
-  -v, --version              show CLI version
+  -o, --timeout=timeout                            [default: 10] For how long to wait before activating (in minutes)
+  -p, --port=port                                  [default: 56874] Custom debugging port of Teams instance
+  -t, --threshold=threshold                        [default: 10] Max amount of people left in call for you to leave
+  --meetingPollingInterval=meetingPollingInterval  [default: 5] How often to check for a new meeting (in seconds)
 ```
 
 student piwo debil
